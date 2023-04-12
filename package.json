@@ -1,0 +1,29 @@
+{
+  "name": "picgo-plugin-tinypng",
+  "version": "1.0.0",
+  "description": "使用tinify.cn的api对上传的图片进行压缩",
+  "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "patch": "npm version patch && git push origin master && git push origin --tags",
+    "minor": "npm version minor && git push origin master && git push origin --tags",
+    "major": "npm version major && git push origin master && git push origin --tags"
+  },
+  "keywords": [
+    "picgo",
+    "picgo-gui-plugin",
+    "picgo-plugin"
+  ],
+  "author": "liujinpen",
+  "license": "MIT",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "fs-extra": "^11.1.1",
+    "image-size": "^1.0.2",
+    "picgo": "^1.5.1"
+  }
+}
