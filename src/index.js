@@ -6,17 +6,21 @@ module.exports = (ctx) => {
     const config = ctx.getConfig('tinypng') || ctx.getConfig('picgo-plugin-tinypng')
     const key = config['key']
 
+    ctx.log.info(`Tinypng ctx.input:${ctx.input}`)
+
     // input是一个路径列表，对每个路径的图片都先进行压缩
     const tasks = ctx.input.map(imageUrl => {
-      ctx.log.info('图片地址:' + imageUrl)
+      ctx.log.info(`Tinypng 图片地址:${imageUrl}`)
       // 调用压缩方法
       return tinypng.tinypngKeyCompress(ctx, imageUrl, key).then(res => {
         return res
       })
     })
 
-    return Promise.all(tasks).then((output) => {
-      ctx.output = output
+    return Promise.all(tasks).then((data) => {
+      ctx.log.info('Tinypng data:' + JSON.stringify(data.map(e => e.input)))
+      ctx.output = data.map(e => e.output)
+      ctx.input = data.map(e => e.input)
       return ctx
     })
   }
